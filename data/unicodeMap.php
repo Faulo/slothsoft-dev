@@ -1,5 +1,5 @@
 <?php
-namespace Slothsoft\CMS;
+namespace Slothsoft\Farah;
 
 $resDoc = $this->getResourceDoc('dev/unicode', 'xml');
 

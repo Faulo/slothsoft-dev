@@ -1,5 +1,5 @@
 <?php
-namespace Slothsoft\CMS;
+namespace Slothsoft\Farah;
 
 use Slothsoft\Core\Image;
 use Slothsoft\Core\Storage;
