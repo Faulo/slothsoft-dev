@@ -1,7 +1,7 @@
 <?php
 namespace Slothsoft\Dev\Bahn;
 
-use DOMDocumentSmart;
+use Slothsoft\Dev\DOMDocumentSmart;
 use DOMElement;
 use Exception;
 
