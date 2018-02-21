@@ -23,7 +23,10 @@ foreach ($moduleList as $modulePath) {
             function(AssetInterface $asset) use ($moduleName, $moduleFile) {
                 $backupFile = $moduleFile . '.backup';
                 if (!file_exists($backupFile)) {
-                    copy($moduleFile, $moduleFile . '.backup');
+                    //copy($moduleFile, $moduleFile . '.backup');
+                }
+                if (!file_exists($backupFile)) {
+                    return "to convert, create backup file $backupFile";
                 }
                 return new class($asset, $moduleName, $backupFile, $moduleFile) implements FileWriterInterface {
                     use DOMWriterFromFileTrait;

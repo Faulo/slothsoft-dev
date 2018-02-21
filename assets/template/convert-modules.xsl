@@ -51,24 +51,19 @@ Llo
 			<default-configuration>
 				<xsl:copy-of select="sfm:default-configuration/*"/>
 			</default-configuration>
-			<assets>
-				<xsl:apply-templates select="sfm:assets/*"/>
-			</assets>
+			<xsl:apply-templates select="sfm:assets"/>
 		</module>
 	</xsl:template>
 	
 	<xsl:template match="
-		sfm:param | sfm:include-fragment | sfm:directory
+		sfm:assets | sfm:param | sfm:include-fragment | sfm:directory
 	 	| sfm:use-stylesheet | sfm:use-template | sfm:use-script | sfm:use-document
 	 	">
 		<xsl:copy select=".">
 			<xsl:copy-of select="attribute::*"/>
+			<xsl:apply-templates select="sfm:resource | sfm:resourceDir | sfm:resource-directory" mode="res"/>
 			<xsl:apply-templates select="*"/>
 		</xsl:copy>
-	</xsl:template>
-	
-	<xsl:template match="sfm:resource | sfm:resource-directory">
-		<xsl:apply-templates select="." mode="res"/>
 	</xsl:template>
 	
 	<xsl:template match="module">
@@ -85,11 +80,11 @@ Llo
 				<resource-directory name="dictionary" path="dictionary" type="application/xml"/>
 				<resource-directory name="pages" path="pages" type="application/xml"/>
 				
-				<xsl:apply-templates select="*"/>
-				
 				<directory name="static">
 					<xsl:apply-templates select="*" mode="res"/>
 				</directory>
+				
+				<xsl:apply-templates select="*"/>
 			</assets>
 		</module>
 	</xsl:template>
@@ -205,7 +200,7 @@ Llo
 		</xsl:choose>
 	</xsl:template>
 	
-	<xsl:template match="resourceDir | sfm:resourceDir"/>
+	<xsl:template match="resourceDir | sfm:resourceDir | sfm:resource-directory"/>
 	<xsl:template match="resource | sfm:resource"/>
 	
 	<xsl:template match="*">
@@ -219,7 +214,7 @@ Llo
 	<xsl:template match="*" mode="res">
 		<xsl:apply-templates select="*" mode="res"/>
 	</xsl:template>
-	<xsl:template match="resourceDir | sfm:resourceDir" mode="res">
+	<xsl:template match="resourceDir | sfm:resourceDir | sfm:resource-directory" mode="res">
 		<xsl:variable name="options" select="attribute::*[name() != 'name' and name() != 'path' and name() != 'type' and name() != 'source']"/>
 		<resource-directory name="{@name}">
 			<xsl:if test="@path">
