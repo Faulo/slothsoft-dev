@@ -1,104 +1,111 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module>
-	<fragment name="dvb">
-		<res name="dvb" load="xml" />
-		<template name="_dvb" />
-	</fragment>
+<?xml version="1.0"?>
+<module xmlns="http://schema.slothsoft.net/farah/module" xmlns:sfm="http://schema.slothsoft.net/farah/module">
+  <!--
+Farah Module Manifest
 
-	<fragment name="poll">
-		<data name="poll" />
-		<template name="_poll" />
-	</fragment>
+Module: dev
+Vendor: slothsoft
+Farah ID: farah://slothsoft@dev
+Composer ID: slothsoft/dev
 
-	<fragment name="smartphone">
-		<data name="smartphone" />
-		<template name="_smartphone" />
-	</fragment>
+Homepage: http://farah.slothsoft.net/modules/dev
+Packagist: https://packagist.org/packages/slothsoft/dev
+GitHub: https://github.com/Faulo/slothsoft-dev
 
-	<fragment name="swiss-wertvoll">
-		<data name="swiss" />
-		<template name="_swiss" />
-	</fragment>
-	<resource name="swiss-wertvoll" path="swiss-wertvoll.xml"
-		type="application/xml" />
-
-	<fragment name="pics">
-		<struc name="default" />
-		<template name="pics" />
-		<data name="pics-upload" />
-		<resDir name="pics" load="status" />
-	</fragment>
-	<fragment name="pics2">
-		<struc name="default" />
-		<template name="pics" />
-		<resDir name="pics" />
-	</fragment>
-
-	<fragment name="fonts">
-		<template name="fonts" />
-		<resDir name="/slothsoft/fonts" as="fonts" load="xml" />
-		<param name="standalone" scope="global" />
-	</fragment>
-
-	<fragment name="fonts-test">
-		<template name="fonts-test" />
-		<resDir name="/slothsoft/fonts" as="fonts" load="xml" />
-		<!--<resDir name="/slothsoft/system-fonts" as="fonts" load="xml"/> -->
-	</fragment>
-
-	<fragment name="GameOfLife">
-		<template name="_GameOfLife" />
-		<script name="GameOfLife" />
-		<style name="GameOfLife" />
-	</fragment>
-
-	<fragment name="misc">
-		<resDir name="misc" load="xml" />
-	</fragment>
-
-	<resourceDir name="pics" path="pics" type="image/*" />
-	<resourceDir name="txt" path="txt" type="text/plain" />
-	<resourceDir name="misc" path="misc" type="*/*" />
-	<resource name="unicode" path="unicode.xml" type="application/xml" />
-
-	<resource name="dvb" path="dvb.xml" type="application/xml" />
-
-
-	<struc name="default">
-		<style name="/slothsoft/default" />
-		<style name="/slothsoft/fonts" />
-	</struc>
-
-
-	<fragment name="8bit">
-		<template name="_8bit" />
-		<res name="8bit" load="xml" />
-		<struc name="/core/HTML5" />
-		<param name="standalone" scope="global" />
-	</fragment>
-
-	<fragment name="vc2">
-		<template name="_vc2" />
-		<res name="vc2a" load="xml" />
-		<res name="vc2b" load="xml" />
-		<res name="vc2c" load="xml" />
-		<struc name="/core/HTML5" />
-		<param name="standalone" scope="global" />
-	</fragment>
-
-	<resource name="sites" path="sites.xml" type="application/xml" />
-
-	<resource name="8bit" path="8bit.xml" type="application/xml" />
-	<resource name="vc2a" path="vc2a.csv" type="text/csv" del="&#09;"
-		sep="" output="thead" />
-	<resource name="vc2b" path="vc2b.csv" type="text/csv" del="&#09;"
-		sep="" output="thead" />
-	<resource name="vc2c" path="vc2c.csv" type="text/csv" del="&#09;"
-		sep="" output="thead" />
-	<resourceDir name="8bit-comics" path="8bit" type="image/*" />
-	<resourceDir name="8bit-thumbs" path="8bit-thumb" type="image/png" />
-
-	<resource name="GameOfLife" path="GameOfLife.svg" type="image/svg+xml" />
-	<resource name="GameOfLife.Filter" path="GameOfLife.Filter.svg"
-		type="image/svg+xml" />
+Llo
+-->
+  <default-configuration/>
+  <assets>
+    <resource-directory name="data" path="data" type="application/x-php"/>
+    <resource-directory name="css" path="stylesheet" type="text/css"/>
+    <resource-directory name="js" path="script" type="application/javascript"/>
+    <resource-directory name="xsl" path="template" type="application/xslt+xml"/>
+    <resource-directory name="dictionary" path="dictionary" type="application/xml"/>
+    <resource-directory name="pages" path="pages" type="application/xml"/>
+    <fragment name="dvb">
+      <use-document ref="static/dvb"/>
+      <use-template ref="xsl/_dvb"/>
+    </fragment>
+    <fragment name="poll">
+      <use-document ref="data/poll"/>
+      <use-template ref="xsl/_poll"/>
+    </fragment>
+    <fragment name="smartphone">
+      <use-document ref="data/smartphone"/>
+      <use-template ref="xsl/_smartphone"/>
+    </fragment>
+    <fragment name="swiss-wertvoll">
+      <use-document ref="data/swiss"/>
+      <use-template ref="xsl/_swiss"/>
+    </fragment>
+    <fragment name="pics">
+      <include-fragment ref="default"/>
+      <use-template ref="xsl/pics"/>
+      <use-document ref="data/pics-upload"/>
+      <use-document ref="static/pics"/>
+    </fragment>
+    <fragment name="pics2">
+      <include-fragment ref="default"/>
+      <use-template ref="xsl/pics"/>
+      <use-document ref="static/pics"/>
+    </fragment>
+    <fragment name="fonts">
+      <use-template ref="xsl/fonts"/>
+      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
+      <param name="standalone" scope="global"/>
+    </fragment>
+    <fragment name="fonts-test">
+      <use-template ref="xsl/fonts-test"/>
+      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
+    </fragment>
+    <fragment name="GameOfLife">
+      <use-template ref="xsl/_GameOfLife"/>
+      <use-script ref="js/GameOfLife"/>
+      <use-stylesheet ref="css/GameOfLife"/>
+    </fragment>
+    <fragment name="misc">
+      <use-document ref="static/misc"/>
+    </fragment>
+    <fragment name="default">
+      <use-stylesheet ref="//slothsoft@slothsoft/css/default"/>
+      <use-stylesheet ref="//slothsoft@slothsoft/css/fonts"/>
+    </fragment>
+    <fragment name="8bit">
+      <use-template ref="xsl/_8bit"/>
+      <use-document ref="static/8bit"/>
+      <include-fragment ref="//slothsoft@core/HTML5"/>
+      <param name="standalone" scope="global"/>
+    </fragment>
+    <fragment name="vc2">
+      <use-template ref="xsl/_vc2"/>
+      <use-document ref="static/vc2a"/>
+      <use-document ref="static/vc2b"/>
+      <use-document ref="static/vc2c"/>
+      <include-fragment ref="//slothsoft@core/HTML5"/>
+      <param name="standalone" scope="global"/>
+    </fragment>
+    <directory name="static">
+      <resource name="swiss-wertvoll" path="swiss-wertvoll.xml" type="application/xml"/>
+      <resource-directory name="pics" path="pics" type="image/*"/>
+      <resource-directory name="txt" path="txt" type="text/plain"/>
+      <resource-directory name="misc" path="misc" type="*/*"/>
+      <resource name="unicode" path="unicode.xml" type="application/xml"/>
+      <resource name="dvb" path="dvb.xml" type="application/xml"/>
+      <resource name="sites" path="sites.xml" type="application/xml"/>
+      <resource name="8bit" path="8bit.xml" type="application/xml"/>
+      <resource name="vc2a" path="vc2a.csv" type="text/csv">
+        <options del="&#9;" sep="" output="thead"/>
+      </resource>
+      <resource name="vc2b" path="vc2b.csv" type="text/csv">
+        <options del="&#9;" sep="" output="thead"/>
+      </resource>
+      <resource name="vc2c" path="vc2c.csv" type="text/csv">
+        <options del="&#9;" sep="" output="thead"/>
+      </resource>
+      <resource-directory name="8bit-comics" path="8bit" type="image/*"/>
+      <resource-directory name="8bit-thumbs" path="8bit-thumb" type="image/png"/>
+      <resource name="GameOfLife" path="GameOfLife.svg" type="image/svg+xml"/>
+      <resource name="GameOfLife.Filter" path="GameOfLife.Filter.svg" type="image/svg+xml"/>
+    </directory>
+  </assets>
 </module>
