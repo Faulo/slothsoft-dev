@@ -1,6 +1,6 @@
 <?php
 use Slothsoft\Core\Storage;
-use Slothsoft\Farah\Module\Assets\AssetInterface;
+use Slothsoft\Farah\Module\Node\Asset\AssetInterface;
 
 $ret = [];
 

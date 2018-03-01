@@ -22,12 +22,15 @@ Llo
     <resource-directory name="xsl" path="template" type="application/xslt+xml"/>
     <resource-directory name="dictionary" path="dictionary" type="application/xml"/>
     <resource-directory name="pages" path="pages" type="application/xml"/>
+	
 	<directory name="overwatch">
 		<resource name="config" path="config.xml" type="application/xml"/>
 		<resource name="source" path="source.php" type="application/x-php"/>
 		<resource name="counter" path="counter.php" type="application/x-php"/>
+		<controller name="counter2" class="Slothsoft\Dev\Overwatch\CounterController"/>
 		<resource-directory name="counter-adapter" path="counter-adapter" type="application/xslt+xml"/>
 	</directory>
+	
     <directory name="static">
       <resource name="swiss-wertvoll" path="swiss-wertvoll.xml" type="application/xml"/>
       <resource-directory name="pics" path="pics" type="image/*"/>
@@ -67,13 +70,13 @@ Llo
       <use-template ref="xsl/_swiss"/>
     </fragment>
     <fragment name="pics">
-      <include-fragment ref="default"/>
+      <import ref="default"/>
       <use-template ref="xsl/pics"/>
       <use-document ref="data/pics-upload"/>
       <use-document ref="static/pics"/>
     </fragment>
     <fragment name="pics2">
-      <include-fragment ref="default"/>
+      <import ref="default"/>
       <use-template ref="xsl/pics"/>
       <use-document ref="static/pics"/>
     </fragment>
@@ -101,7 +104,7 @@ Llo
     <fragment name="8bit">
       <use-template ref="xsl/_8bit"/>
       <use-document ref="static/8bit"/>
-      <include-fragment ref="//slothsoft@core/HTML5"/>
+      <import ref="//slothsoft@core/HTML5"/>
       <param name="standalone" scope="global"/>
     </fragment>
     <fragment name="vc2">
@@ -109,7 +112,7 @@ Llo
       <use-document ref="static/vc2a"/>
       <use-document ref="static/vc2b"/>
       <use-document ref="static/vc2c"/>
-      <include-fragment ref="//slothsoft@core/HTML5"/>
+      <import ref="//slothsoft@core/HTML5"/>
       <param name="standalone" scope="global"/>
     </fragment>
   </assets>

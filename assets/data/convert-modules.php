@@ -3,12 +3,12 @@
 use Slothsoft\Core\DOMHelper;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Farah\HTTPFile;
+use Slothsoft\Farah\Exception\ExceptionContext;
 use Slothsoft\Farah\Module\Module;
 use Slothsoft\Farah\Module\AssetUses\DOMWriterFromFileTrait;
 use Slothsoft\Farah\Module\AssetUses\FileWriterInterface;
 use Slothsoft\Farah\Module\AssetUses\FileWriterStringFromFileTrait;
-use Slothsoft\Farah\Module\Assets\AssetInterface;
-use Slothsoft\Farah\Exception\ExceptionContext;
+use Slothsoft\Farah\Module\Node\Asset\AssetInterface;
 
 $ret = [];
 
