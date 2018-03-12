@@ -110,7 +110,7 @@ do {
     echo $uri . PHP_EOL;
     
     $href = $uri;
-    $xpath = Storage::loadExternalXPath($uri, TIME_YEAR);
+    $xpath = Storage::loadExternalXPath($uri, Seconds::YEAR);
     $uri = null;
     if ($xpath) {
         $uri = $xpath->evaluate($queries['uri']);

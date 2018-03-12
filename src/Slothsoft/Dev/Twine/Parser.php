@@ -1,5 +1,5 @@
 <?php
-namespace Twine;
+namespace Slothsoft\Parser\Twine;
 
 class Parser
 {

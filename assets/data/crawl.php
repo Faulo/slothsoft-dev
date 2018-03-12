@@ -28,7 +28,7 @@ $url = 'http://slothsoft.net';
 $crawler = new WebCrawler($url);
 $crawler->maxDepth = 10000;
 $crawler->maxDocs = 100000;
-$crawler->maxTime = TIME_DAY;
+$crawler->maxTime = Seconds::DAY;
 
 $ret = $crawler->crawl();
 

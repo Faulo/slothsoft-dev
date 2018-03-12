@@ -11,7 +11,7 @@ $exceptionList = [];
 $exceptionList[268] = "0268-0269 Catch Up with Luffy! The Straw Hat Pirates' All-Out War & Robin was Betrayed! The Expectations of the World Government!.mp4";
 $exceptionList[277] = "0277-0278 Tragedy of Ohara! Fear of Buster Call! & Say You Want to Live! We are Friends!!.mp4";
 
-if ($xpath = $this->loadExternalXPath($url, TIME_DAY)) {
+if ($xpath = $this->loadExternalXPath($url, Seconds::DAY)) {
     $tableNode = $xpath->evaluate('//*[@class="wikitable"][contains(., "East Blue Saga")][1]')->item(0);
     for ($sagaNo = 1; $sagaNo <= 6; $sagaNo ++) {
         $arcNodeList = $xpath->evaluate(sprintf('*/*[%d]', $sagaNo), $tableNode);

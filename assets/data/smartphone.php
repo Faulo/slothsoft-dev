@@ -29,7 +29,7 @@ $queryList['camera'] = '//*[@class="accent accent-camera"]';
 $queryList['battery'] = '//*[@class="accent accent-battery"]';
 
 foreach ($uriList as $uri) {
-    if ($xpath = $this->loadExternalXPath($uri, TIME_YEAR)) {
+    if ($xpath = $this->loadExternalXPath($uri, Seconds::YEAR)) {
         $data = [];
         foreach ($queryList as $key => $query) {
             $query = sprintf('normalize-space(%s)', $query);

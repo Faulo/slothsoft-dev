@@ -8,7 +8,7 @@ class Manager
 
     protected static $dataList = [];
 
-    protected static $dataTimeout = TIME_DAY;
+    protected static $dataTimeout = Seconds::DAY;
 
     public static function downloadData($url)
     {

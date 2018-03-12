@@ -19,7 +19,7 @@ foreach ($dataDoc->getElementsByTagName('source') as $sourceNode) {
     $ret[] = $this->createClosure([
         'path' => "/$source[name]"
     ], function (AssetInterface $asset) use ($source) {
-        return Storage::loadExternalDocument($source['href'], TIME_DAY);
+        return Storage::loadExternalDocument($source['href'], Seconds::DAY);
     });
 }
 
