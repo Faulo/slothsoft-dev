@@ -27,7 +27,7 @@ Llo
 		<resource name="config" path="config.xml" type="application/xml"/>
 		<resource name="source" path="source.php" type="application/x-php"/>
 		<resource name="counter" path="counter.php" type="application/x-php"/>
-		<controller name="counter2" class="Slothsoft\Dev\Overwatch\CounterController"/>
+		<custom-asset name="counter2" class="Slothsoft\Dev\Overwatch\CounterAsset"/>
 		<resource-directory name="counter-adapter" path="counter-adapter" type="application/xslt+xml"/>
 	</directory>
 	
@@ -91,15 +91,15 @@ Llo
     </fragment>
     <fragment name="GameOfLife">
       <use-template ref="xsl/_GameOfLife"/>
-      <use-script ref="js/GameOfLife"/>
-      <use-stylesheet ref="css/GameOfLife"/>
+      <link-script ref="js/GameOfLife"/>
+      <link-stylesheet ref="css/GameOfLife"/>
     </fragment>
     <fragment name="misc">
       <use-document ref="static/misc"/>
     </fragment>
     <fragment name="default">
-      <use-stylesheet ref="//slothsoft@slothsoft/css/default"/>
-      <use-stylesheet ref="//slothsoft@slothsoft/css/fonts"/>
+      <link-stylesheet ref="//slothsoft@slothsoft/css/default"/>
+      <link-stylesheet ref="//slothsoft@slothsoft/css/fonts"/>
     </fragment>
     <fragment name="8bit">
       <use-template ref="xsl/_8bit"/>

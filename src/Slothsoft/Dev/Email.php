@@ -1,19 +1,18 @@
 <?php
-
-declare(strict_types=1);
-
+declare(strict_types = 1);
 namespace Slothsoft\Dev;
 
 use InvalidArgumentException;
 
 final class Email
 {
+
     private $email;
 
     private function __construct(string $email)
     {
         $this->ensureIsValidEmail($email);
-
+        
         $this->email = $email;
     }
 
@@ -29,13 +28,8 @@ final class Email
 
     private function ensureIsValidEmail(string $email)
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    '"%s" is not a valid email address',
-                    $email
-                )
-            );
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidArgumentException(sprintf('"%s" is not a valid email address', $email));
         }
     }
 }

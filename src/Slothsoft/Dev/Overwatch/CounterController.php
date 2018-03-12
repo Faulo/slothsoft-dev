@@ -1,10 +1,10 @@
 <?php
 namespace Slothsoft\Dev\Overwatch;
 
-use Slothsoft\Farah\Module\Controllers\ControllerImplementation;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlArguments;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlPath;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlResolver;
+use Slothsoft\Farah\Module\Node\Asset\AssetImplementation;
 use Slothsoft\Farah\Module\PathResolvers\PathResolverCatalog;
 use Slothsoft\Farah\Module\PathResolvers\PathResolverInterface;
 
@@ -13,9 +13,10 @@ use Slothsoft\Farah\Module\PathResolvers\PathResolverInterface;
  * @author Daniel Schulz
  *        
  */
-class CounterController extends ControllerImplementation
+class CounterAsset extends AssetImplementation
 {
-    public function createPathResolver() : PathResolverInterface
+
+    protected function loadPathResolver(): PathResolverInterface
     {
         $ret = [];
         
@@ -23,10 +24,7 @@ class CounterController extends ControllerImplementation
         
         $module = $asset->getOwnerModule();
         
-        $configUrl = $module->createUrl(
-            FarahUrlPath::createFromString('/overwatch/config'),
-            FarahUrlArguments::createEmpty()
-        );
+        $configUrl = $module->createUrl(FarahUrlPath::createFromString('/overwatch/config'), FarahUrlArguments::createEmpty());
         $configResult = FarahUrlResolver::resolveToResult($configUrl);
         $configDocument = $configResult->toDocument();
         
@@ -40,15 +38,16 @@ class CounterController extends ControllerImplementation
             
             if ($source['type'] === 'counter') {
                 /*
-                $ret["/$source[name]"] = $asset->addChildElement($element)
-                
-                $definition->createClosure([
-                    'path' => 
-                ], function (FarahUrl $url) use ($dataDoc, $source) {
-                    $dom = new DOMHelper();
-                    return $dom->transformToDocument($dataDoc, $source['templateUrl'], $source);
-                });
-                //*/
+                 * $ret["/$source[name]"] = $asset->addChildElement($element)
+                 *
+                 * $definition->createClosure([
+                 * 'path' =>
+                 * ], function (FarahUrl $url) use ($dataDoc, $source) {
+                 * $dom = new DOMHelper();
+                 * return $dom->transformToDocument($dataDoc, $source['templateUrl'], $source);
+                 * });
+                 * //
+                 */
             }
         }
         

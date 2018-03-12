@@ -13,72 +13,74 @@ use DOMXPath;
 use Exception;
 use XSLTProcessor;
 
-/***********************************************************************
+/**
+ * *********************************************************************
  * DOMDocument Erweiterung v1.33 19.01.2016 © Daniel Schulz
- * 
- * 	Changelog:
- *		v1.33 19.01.2016
- *			construct		//, ENT_COMPAT | ENT_HTML401, self::DEFAULT_CHARSET);
- *		v1.32 10.12.2015
- *			public static function loadSearchArray(DOMDocument $doc, array $search)
- *		v1.31 15.04.2015
- *			PHP 5.4
- *			construct()
- *				get_html_translation_table(HTML_ENTITIES, ENT_COMPAT | ENT_HTML401, self::DEFAULT_CHARSET);
- *			parseHTML()
- *				<html><head><meta charset="%s"></head><body>%s</body></html>
- *		v1.30 21.11.2013
- *			public static function translateArray(array $inputList, array $wordList)
- *			getTextFromNode(DOMNode $Node, $showComments = false)		$showComments
- *		v1.29 10.09.2012
- *			parseTemplate	TEMPL_DATADOC_ERR, TEMPL_TEMPLDOC_ERR
- *		v1.28 03.08.2012
- *			parseHTML
- *			saveXHTML
- *			self::loadFile
- *		v1.27 16.05.2012
- *			output($xmlDoc, $xslDoc = null, $debug = false, $outputURI = 'php://output')
- *		v1.26 11.05.2012
- *			DOMDocumentFragment loadXHTML(DOMDocument $doc, $xhtml)
- *			DOMNode setNamespaceURI(DOMNode $sourceNode, $namespaceURI = null)
- *			const NS_HTML, NS_XSL
- *		v1.25 30.04.2012
- *			getTextFromNode(DOMNode $Node, $showComments = false)
- *		v1.24 10.04.2012
- *			arr2dom(DOMDocument $doc, $tagName, $structure, $assumeWellformed = false)
- *		v1.23 04.04.2012
- *			importLanguage(DOMDocument $doc, $file, $lang_id)
- *			saveXHTML(DOMDocument $doc, DOMNode $node = null)
- *			parseTemplate(DOMDocument $dataDoc, DOMDocument $templateDoc, $langFile = null, $langId = null)
- *			transform($xmlDoc, $xslDoc, $returnAsString = false)
- *			loadFile($file, $asHTML = false)
- *		v1.22 10.08.2011
- *			output($xmlDoc, $xslDoc, $debug = false)
- * 		v1.21 02.02.2011
- * 			parseHTML
- * 				html_entity_decode($entity_keys)
- *		v1.20 01.02.2011
- * 			parseHTML
- * 				try { loadXML } catch { loadHTML } 
- * 		v1.19 01.02.2011
- * 			public static string getTextFromNode(DOMNode)
- * 		v1.18 28.01.2011
- * 			replaceContent
- * 				if($Node->ownerElement)
- * 		v1.17 07.01.2011
- * 			loadTemplateTextNodes
- * 				($data=utf8_decode($Root->data))
- * 
+ *
+ * Changelog:
+ * v1.33 19.01.2016
+ * construct //, ENT_COMPAT | ENT_HTML401, self::DEFAULT_CHARSET);
+ * v1.32 10.12.2015
+ * public static function loadSearchArray(DOMDocument $doc, array $search)
+ * v1.31 15.04.2015
+ * PHP 5.4
+ * construct()
+ * get_html_translation_table(HTML_ENTITIES, ENT_COMPAT | ENT_HTML401, self::DEFAULT_CHARSET);
+ * parseHTML()
+ * <html><head><meta charset="%s"></head><body>%s</body></html>
+ * v1.30 21.11.2013
+ * public static function translateArray(array $inputList, array $wordList)
+ * getTextFromNode(DOMNode $Node, $showComments = false) $showComments
+ * v1.29 10.09.2012
+ * parseTemplate TEMPL_DATADOC_ERR, TEMPL_TEMPLDOC_ERR
+ * v1.28 03.08.2012
+ * parseHTML
+ * saveXHTML
+ * self::loadFile
+ * v1.27 16.05.2012
+ * output($xmlDoc, $xslDoc = null, $debug = false, $outputURI = 'php://output')
+ * v1.26 11.05.2012
+ * DOMDocumentFragment loadXHTML(DOMDocument $doc, $xhtml)
+ * DOMNode setNamespaceURI(DOMNode $sourceNode, $namespaceURI = null)
+ * const NS_HTML, NS_XSL
+ * v1.25 30.04.2012
+ * getTextFromNode(DOMNode $Node, $showComments = false)
+ * v1.24 10.04.2012
+ * arr2dom(DOMDocument $doc, $tagName, $structure, $assumeWellformed = false)
+ * v1.23 04.04.2012
+ * importLanguage(DOMDocument $doc, $file, $lang_id)
+ * saveXHTML(DOMDocument $doc, DOMNode $node = null)
+ * parseTemplate(DOMDocument $dataDoc, DOMDocument $templateDoc, $langFile = null, $langId = null)
+ * transform($xmlDoc, $xslDoc, $returnAsString = false)
+ * loadFile($file, $asHTML = false)
+ * v1.22 10.08.2011
+ * output($xmlDoc, $xslDoc, $debug = false)
+ * v1.21 02.02.2011
+ * parseHTML
+ * html_entity_decode($entity_keys)
+ * v1.20 01.02.2011
+ * parseHTML
+ * try { loadXML } catch { loadHTML }
+ * v1.19 01.02.2011
+ * public static string getTextFromNode(DOMNode)
+ * v1.18 28.01.2011
+ * replaceContent
+ * if($Node->ownerElement)
+ * v1.17 07.01.2011
+ * loadTemplateTextNodes
+ * ($data=utf8_decode($Root->data))
+ *
  * Template Usage:
- * 
- * $Document->loadTemplate($templateFile);			an $templateFile wird noch der String ".templ" angehangen, um die Template-Datei zu finden
- * $Document->loadElements($placeholderNodes);		$placeholderNodes ist ein array mit der Struktur PlatzhalterSchlüssel => Platzhalterknoten
- * $Document->loadLanguage($templateFile, $lang_id)	an $templateFile wird noch der String "." und der Sprach-Schlüssel ("de") angehangen, um die Sprach-Datei zu finden
- * 
- * echo $Document->saveHTML($keepPlaceholder);		ist $keepPlaceholder wahr, werden die noch im HTML stehenden ##Platzhalter## nicht entfernt
- * 
- * 
- ***********************************************************************/
+ *
+ * $Document->loadTemplate($templateFile); an $templateFile wird noch der String ".templ" angehangen, um die Template-Datei zu finden
+ * $Document->loadElements($placeholderNodes); $placeholderNodes ist ein array mit der Struktur PlatzhalterSchlüssel => Platzhalterknoten
+ * $Document->loadLanguage($templateFile, $lang_id) an $templateFile wird noch der String "." und der Sprach-Schlüssel ("de") angehangen, um die Sprach-Datei zu finden
+ *
+ * echo $Document->saveHTML($keepPlaceholder); ist $keepPlaceholder wahr, werden die noch im HTML stehenden ##Platzhalter## nicht entfernt
+ *
+ *
+ * *********************************************************************
+ */
 DOMDocumentSmart::construct();
 
 class DOMDocumentSmart extends DOMDocument
@@ -93,13 +95,17 @@ class DOMDocumentSmart extends DOMDocument
     const DEFAULT_CHARSET = 'UTF-8';
 
     const TEMPL_SIGN = '##';
- // Zeichen für Template Platzhalter Begin/Ende
+
+    // Zeichen für Template Platzhalter Begin/Ende
     const TEMPL_SIGN_LENGTH = 2;
- // Länge des Template-Zeichens
+
+    // Länge des Template-Zeichens
     const TEMPL_LIST = 'tm_list';
- // Attribute für Listen-Templates
+
+    // Attribute für Listen-Templates
     const TEMPL_COND = 'tm_cond';
- // Attribute für if-statements
+
+    // Attribute für if-statements
     const TEMPL_TEMPFILE_END = '.templ';
 
     const TEMPL_TEMPFILE_ERR = 'Template File not found: ';
@@ -136,7 +142,8 @@ class DOMDocumentSmart extends DOMDocument
     );
 
     public static $entity_keys = array();
- // Gegenstück zu $entity_list, um &entities; zu UTF-8 zu konvertieren
+
+    // Gegenstück zu $entity_list, um &entities; zu UTF-8 zu konvertieren
     public static function construct()
     {
         $entity_whitelist = get_html_translation_table(HTML_ENTITIES); // , ENT_COMPAT | ENT_HTML401, self::DEFAULT_CHARSET);
@@ -785,7 +792,7 @@ class DOMDocumentSmart extends DOMDocument
         if (! $ParentNode instanceof DOMNode)
             $ParentNode = $this->documentElement;
         for ( // Stack initialisieren
-$html_stack = array(
+        $html_stack = array(
             $html_arr
         ), $html_stack_count = 1; 
     // Abbruch wenn der Stack alle ist
