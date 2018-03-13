@@ -1,6 +1,7 @@
 <?php
 
 use Slothsoft\Core\DOMHelper;
+use Slothsoft\Core\ServerEnvironment;
 use Slothsoft\Core\FileSystem;
 use Slothsoft\Farah\HTTPFile;
 use Slothsoft\Farah\Exception\ExceptionContext;
@@ -12,7 +13,7 @@ use Slothsoft\Farah\Module\Node\Asset\AssetInterface;
 
 $ret = [];
 
-$moduleList = FileSystem::scanDir(SERVER_ROOT . 'vendor/slothsoft', FileSystem::SCANDIR_REALPATH);
+$moduleList = FileSystem::scanDir(ServerEnvironment::getRootDirectory() . 'vendor/slothsoft', FileSystem::SCANDIR_REALPATH);
 
 foreach ($moduleList as $modulePath) {
     $moduleName = basename($modulePath);
