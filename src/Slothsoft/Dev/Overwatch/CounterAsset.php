@@ -2,13 +2,12 @@
 declare(strict_types = 1);
 namespace Slothsoft\Dev\Overwatch;
 
-use Slothsoft\Core\XML\LeanElement;
-use Slothsoft\Farah\Module\Module;
-use Slothsoft\Farah\Module\Node\Asset\ContainerAsset;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrl;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlArguments;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlPath;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlResolver;
+use Slothsoft\Farah\Module\Node\AssetBuilderTrait;
+use Slothsoft\Farah\Module\Node\Asset\ContainerAsset;
 use Slothsoft\Farah\Module\Results\DOMDocumentResult;
 use Slothsoft\Farah\Module\Results\ResultInterface;
 
@@ -19,6 +18,7 @@ use Slothsoft\Farah\Module\Results\ResultInterface;
  */
 class CounterAsset extends ContainerAsset
 {
+    use AssetBuilderTrait;
 
     protected function loadChildren(): array
     {
@@ -36,25 +36,14 @@ class CounterAsset extends ContainerAsset
                 $source[$attr->name] = $attr->value;
             }
             
-            $useDocument1 = LeanElement::createOneFromArray(Module::TAG_USE_DOCUMENT, [
-                'ref' => '/overwatch/config'
-            ]);
-            $useDocument2 = LeanElement::createOneFromArray(Module::TAG_USE_DOCUMENT, [
-                'ref' => "/overwatch/source/$source[name]",
-                'as' => 'source'
-            ]);
-            $useTemplate = LeanElement::createOneFromArray(Module::TAG_USE_TEMPLATE, [
-                'ref' => "/overwatch/$source[type]-adapter/$source[adapter]"
-            ]);
-            $fragment = LeanElement::createOneFromArray(Module::TAG_FRAGMENT, [
-                'name' => $source['name']
-            ], [
-                $useDocument1,
-                $useDocument2,
-                $useTemplate
-            ]);
-            
-            $ret[] = $this->createChildNode($fragment);
+            $ret[] = $this->buildFragment(
+                $source['name'],
+                [
+                    'config' => '/overwatch/config',
+                    'source' => "/overwatch/source/$source[name]",
+                ],
+                "/overwatch/$source[type]-adapter/$source[adapter]"
+            );
         }
         return $ret;
     }
