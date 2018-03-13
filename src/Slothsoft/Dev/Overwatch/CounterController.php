@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace Slothsoft\Dev\Overwatch;
 
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlArguments;
