@@ -19,6 +19,7 @@ use Slothsoft\Farah\Module\Results\ResultInterface;
  */
 class CounterAsset extends ContainerAsset
 {
+
     protected function loadChildren(): array
     {
         $ret = [];
@@ -35,41 +36,36 @@ class CounterAsset extends ContainerAsset
                 $source[$attr->name] = $attr->value;
             }
             
-            $useDocument1 = LeanElement::createOneFromArray(
-                Module::TAG_USE_DOCUMENT,
-                [
-                    'ref' => '/overwatch/config',
-                ]
-            );
-            $useDocument2 = LeanElement::createOneFromArray(
-                Module::TAG_USE_DOCUMENT,
-                [
-                    'ref' => "/overwatch/source/$source[name]",
-                    'as' => 'source',
-                ]
-            );
-            $useTemplate = LeanElement::createOneFromArray(
-                Module::TAG_USE_TEMPLATE,
-                [
-                    'ref' => "/overwatch/$source[type]-adapter/$source[adapter]",
-                ]
-            );
-            $fragment = LeanElement::createOneFromArray(
-                Module::TAG_FRAGMENT,
-                ['name' => $source['name']],
-                [$useDocument1, $useDocument2, $useTemplate]
-            );
+            $useDocument1 = LeanElement::createOneFromArray(Module::TAG_USE_DOCUMENT, [
+                'ref' => '/overwatch/config'
+            ]);
+            $useDocument2 = LeanElement::createOneFromArray(Module::TAG_USE_DOCUMENT, [
+                'ref' => "/overwatch/source/$source[name]",
+                'as' => 'source'
+            ]);
+            $useTemplate = LeanElement::createOneFromArray(Module::TAG_USE_TEMPLATE, [
+                'ref' => "/overwatch/$source[type]-adapter/$source[adapter]"
+            ]);
+            $fragment = LeanElement::createOneFromArray(Module::TAG_FRAGMENT, [
+                'name' => $source['name']
+            ], [
+                $useDocument1,
+                $useDocument2,
+                $useTemplate
+            ]);
             
             $ret[] = $this->createChildNode($fragment);
         }
         return $ret;
     }
-    
-    protected function loadResult(FarahUrl $url) : ResultInterface {
+
+    protected function loadResult(FarahUrl $url): ResultInterface
+    {
         $document = $this->getElement()->toDocument();
         $parentNode = $document->documentElement;
         foreach ($this->getAssetChildren() as $child) {
-            $parentNode->appendChild($child->lookupResultByArguments($url->getArguments())->toElement($document));
+            $parentNode->appendChild($child->lookupResultByArguments($url->getArguments())
+                ->toElement($document));
         }
         return new DOMDocumentResult($url, $document);
     }
