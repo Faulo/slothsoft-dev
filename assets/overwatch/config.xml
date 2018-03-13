@@ -3,6 +3,7 @@
 	<hero-list>
 		<hero name="Ana" />
 		<hero name="Bastion" />
+		<hero name="Brigitte" />
 		<hero name="D.VA" />
 		<hero name="Doomfist" />
 		<hero name="Genji" />
