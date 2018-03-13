@@ -25,9 +25,8 @@ Llo
 	
 	<directory name="overwatch">
 		<resource name="config" path="config.xml" type="application/xml"/>
-		<resource name="source" path="source.php" type="application/x-php"/>
-		<resource name="counter" path="counter.php" type="application/x-php"/>
-		<custom-asset name="counter2" class="Slothsoft\Dev\Overwatch\CounterAsset"/>
+		<custom-asset name="source" class="Slothsoft\Dev\Overwatch\SourceAsset"/>
+		<custom-asset name="counter" class="Slothsoft\Dev\Overwatch\CounterAsset"/>
 		<resource-directory name="counter-adapter" path="counter-adapter" type="application/xslt+xml"/>
 	</directory>
 	

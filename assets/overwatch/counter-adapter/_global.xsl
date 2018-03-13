@@ -5,15 +5,8 @@
 	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
 	xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl func str">
 
-	<xsl:param name="name" />
-	<xsl:param name="href" />
-	<xsl:param name="adapter" />
-	<xsl:param name="type" />
-
-	<xsl:param name="dataUrl" />
-	<xsl:param name="templateUrl" />
-
-	<xsl:variable name="config" select="/config" />
+	<xsl:variable name="config" select="/*/*[@name='config']/config" />
+	<xsl:variable name="source" select="/*/*[@name='source']/*" />
 
 
 
@@ -36,9 +29,13 @@
 			select="normalize-space(translate(normalize-space($a), 'abcdefghijklmnopqrstuvwxyz:', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '))" />
 	</func:function>
 
-	<xsl:template match="/">
-		<source name="{$name}" href="{$href}" adapter="{$adapter}"
-			type="{$type}">
+	<xsl:template match="/*">
+		<xsl:apply-templates select="$config//source[@name = current()/@name]"/>
+	</xsl:template>
+	
+	<xsl:template match="source">
+		<source>
+			<xsl:copy-of select="@*"/>
 			<xsl:for-each select="$config/hero-list/hero">
 				<xsl:variable name="heroName" select="@name" />
 				<hero name="{$heroName}">

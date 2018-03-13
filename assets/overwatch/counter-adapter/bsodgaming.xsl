@@ -7,7 +7,6 @@
 
 	<xsl:import href="farah://slothsoft@dev/overwatch/counter-adapter/_global" />
 
-	<xsl:variable name="source" select="document($dataUrl)/*" />
 	<xsl:variable name="sourceTable"
 		select="$source//*[@class='td-post-content']/table" />
 

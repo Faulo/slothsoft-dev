@@ -7,7 +7,6 @@
 
 	<xsl:import href="farah://slothsoft@dev/overwatch/counter-adapter/_global" />
 
-	<xsl:variable name="source" select="document($dataUrl)/*" />
 	<xsl:variable name="sourceTable" select="$source//*[@id='tablepress-98']" />
 
 	<func:function name="lio:calculate-counter">
