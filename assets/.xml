@@ -9,9 +9,24 @@
 	
 	<directory name="overwatch">
 		<resource name="config" path="config.xml" type="application/xml"/>
-		<custom-asset name="source" class="Slothsoft\Dev\Overwatch\SourceAsset"/>
-		<custom-asset name="counter" class="Slothsoft\Dev\Overwatch\CounterAsset"/>
-		<resource-directory name="counter-adapter" path="counter-adapter" type="application/xslt+xml"/>
+		<directory name="counter">
+			<resource use="template" name="counter-list" type="application/xslt+xml"/>
+			<directory name="heropicker" use="document">
+				<use-document ref="overwatch/config"/>
+				<resource use="template" name="adapter" type="application/xslt+xml"/>
+				<external-resource use="document" name="source" type="text/html" src="https://www.heropicker.com/overwatch-counters/"/>
+			</directory>
+			<directory name="bsodgaming" use="document">
+				<use-document ref="overwatch/config"/>
+				<resource use="template" name="adapter" type="application/xslt+xml"/>
+				<external-resource use="document" name="source" type="text/html" src="http://bsodgaming.com/overwatch-counters-guide/"/>
+			</directory>
+			<directory name="rankedboost" use="document">
+				<use-document ref="overwatch/config"/>
+				<resource use="template" name="adapter" type="application/xslt+xml"/>
+				<external-resource use="document" name="source" type="text/html" src="https://rankedboost.com/overwatch/counters/"/>
+			</directory>
+		</directory>
 	</directory>
 	
     <directory name="static">

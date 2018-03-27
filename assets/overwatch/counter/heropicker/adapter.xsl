@@ -5,7 +5,7 @@
 	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
 	xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl func str">
 
-	<xsl:import href="farah://slothsoft@dev/overwatch/counter-adapter/_global" />
+	<xsl:import href="farah://slothsoft@dev/overwatch/counter/counter-list" />
 
 	<xsl:variable name="sourceTable" select="$source//*[@class='counter-table']" />
 

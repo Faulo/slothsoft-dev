@@ -5,8 +5,8 @@ namespace Slothsoft\Dev\Overwatch;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlArguments;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlPath;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlResolver;
-use Slothsoft\Farah\Module\Node\AssetBuilderTrait;
 use Slothsoft\Farah\Module\Node\Asset\ContainerAsset;
+use Slothsoft\Farah\Module\Node\Enhancements\AssetBuilderTrait;
 
 /**
  *
@@ -32,7 +32,7 @@ class SourceAsset extends ContainerAsset
                 $source[$attr->name] = $attr->value;
             }
             
-            $ret[] = $this->buildExternalDocument($source['name'], $source['href']);
+            $ret[] = $this->buildExternalResource($source['name'], $source['href']);
         }
         return $ret;
     }

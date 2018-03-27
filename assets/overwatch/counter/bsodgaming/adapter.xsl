@@ -5,9 +5,10 @@
 	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
 	xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl func str">
 
-	<xsl:import href="farah://slothsoft@dev/overwatch/counter-adapter/_global" />
+	<xsl:import href="farah://slothsoft@dev/overwatch/counter/counter-list" />
 
-	<xsl:variable name="sourceTable" select="$source//*[@id='tablepress-98']" />
+	<xsl:variable name="sourceTable"
+		select="$source//*[@class='td-post-content']/table" />
 
 	<func:function name="lio:calculate-counter">
 		<xsl:param name="thisHero" />
@@ -20,11 +21,11 @@
 
 		<xsl:choose>
 			<xsl:when
-				test="$goodList[lio:contains(../td[1], $thisHero)][lio:contains(., $thatHero)]">
+				test="$goodList[lio:equals((preceding::td[b])[last()], $thisHero)][lio:equals(., $thatHero)]">
 				<func:result select="1" />
 			</xsl:when>
 			<xsl:when
-				test="$badList[lio:contains(../td[1], $thisHero)][lio:contains(., $thatHero)]">
+				test="$badList[lio:equals((preceding::td[b])[last()], $thisHero)][lio:equals(., $thatHero)]">
 				<func:result select="-1" />
 			</xsl:when>
 			<xsl:otherwise>

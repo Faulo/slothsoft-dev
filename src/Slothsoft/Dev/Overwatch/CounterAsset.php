@@ -6,10 +6,10 @@ use Slothsoft\Farah\Module\FarahUrl\FarahUrl;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlArguments;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlPath;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlResolver;
-use Slothsoft\Farah\Module\Node\AssetBuilderTrait;
 use Slothsoft\Farah\Module\Node\Asset\ContainerAsset;
 use Slothsoft\Farah\Module\Results\DOMDocumentResult;
 use Slothsoft\Farah\Module\Results\ResultInterface;
+use Slothsoft\Farah\Module\Node\Enhancements\AssetBuilderTrait;
 
 /**
  *

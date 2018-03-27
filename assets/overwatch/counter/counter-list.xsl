@@ -28,14 +28,20 @@
 		<func:result
 			select="normalize-space(translate(normalize-space($a), 'abcdefghijklmnopqrstuvwxyz:', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '))" />
 	</func:function>
-
-	<xsl:template match="/*">
-		<xsl:apply-templates select="$config//source[@name = current()/@name]"/>
-	</xsl:template>
 	
-	<xsl:template match="source">
-		<source>
-			<xsl:copy-of select="@*"/>
+	<xsl:template match="/*[@name='counter']">
+		<counter-list>
+			<xsl:for-each select="*">
+				<counter name="{@name}">
+					<xsl:copy-of select="*/@*"/>
+					<xsl:copy-of select="*/*"/>
+				</counter>
+			</xsl:for-each>
+		</counter-list>
+	</xsl:template>
+
+	<xsl:template match="/*[@name!='counter']">
+		<counter>
 			<xsl:for-each select="$config/hero-list/hero">
 				<xsl:variable name="heroName" select="@name" />
 				<hero name="{$heroName}">
@@ -46,6 +52,6 @@
 					</xsl:for-each>
 				</hero>
 			</xsl:for-each>
-		</source>
+		</counter>
 	</xsl:template>
 </xsl:stylesheet>
