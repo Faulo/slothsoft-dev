@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <assets xmlns="http://schema.slothsoft.net/farah/module">
-    <resource-directory name="data" path="data" type="application/x-php"/>
+    <directory name="data" path="data">
+    	<fragment name="poll"/>
+    	<fragment name="smartphone"/>
+    	<fragment name="swiss"/>
+    	<fragment name="pics-upload"/>
+    </directory>
     <resource-directory name="css" path="stylesheet" type="text/css"/>
     <resource-directory name="js" path="script" type="application/javascript"/>
     <resource-directory name="xsl" path="template" type="application/xslt+xml"/>
-    <resource-directory name="dictionary" path="dictionary" type="application/xml"/>
     <resource-directory name="pages" path="pages" type="application/xml"/>
 	
 	<directory name="overwatch">
@@ -46,8 +50,6 @@
       <resource name="vc2c" path="vc2c.csv" type="text/csv">
         <options del="&#9;" sep="" output="thead"/>
       </resource>
-      <resource-directory name="8bit-comics" path="8bit" type="image/*"/>
-      <resource-directory name="8bit-thumbs" path="8bit-thumb" type="image/png"/>
       <resource name="GameOfLife" path="GameOfLife.svg" type="image/svg+xml"/>
       <resource name="GameOfLife.Filter" path="GameOfLife.Filter.svg" type="image/svg+xml"/>
     </directory>
