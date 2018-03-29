@@ -1,15 +1,118 @@
 <?xml version="1.0"?>
 <assets xmlns="http://schema.slothsoft.net/farah/module">
-    <directory name="data" path="data">
+    <resource-directory name="css" type="text/css"/>
+    <resource-directory name="js" type="application/javascript"/>
+    <resource-directory name="xsl" type="application/xslt+xml"/>
+    
+    <resource-directory name="sitemap" type="application/xml"/>
+    <directory name="schema">
+     <directory name="null">
+       <resource-directory name="20171027" path="20171027" type="application/x-xsd+xml"/>
+       <resource-directory name="latest" path="20171027" type="application/x-xsd+xml"/>
+     </directory>
+    </directory>
+	
+    <directory name="static">
+      <resource name="swiss-wertvoll" path="swiss-wertvoll.xml" type="application/xml"/>
+      <resource-directory name="pics" path="pics" type="image/*"/>
+      <resource-directory name="txt" path="txt" type="text/plain"/>
+      <resource-directory name="misc" path="misc" type="*/*"/>
+      <resource name="unicode" path="unicode.xml" type="application/xml"/>
+      <resource name="dvb" path="dvb.xml" type="application/xml"/>
+      <resource name="8bit" path="8bit.xml" type="application/xml"/>
+      <resource name="vc2a" path="vc2a.csv" type="text/csv">
+        <options del="&#9;" sep="" output="thead"/>
+      </resource>
+      <resource name="vc2b" path="vc2b.csv" type="text/csv">
+        <options del="&#9;" sep="" output="thead"/>
+      </resource>
+      <resource name="vc2c" path="vc2c.csv" type="text/csv">
+        <options del="&#9;" sep="" output="thead"/>
+      </resource>
+      <resource name="GameOfLife" path="GameOfLife.svg" type="image/svg+xml"/>
+      <resource name="GameOfLife.Filter" path="GameOfLife.Filter.svg" type="image/svg+xml"/>
+    </directory>
+    
+     
+     
+    <fragment name="data">
     	<fragment name="poll"/>
     	<fragment name="smartphone"/>
     	<fragment name="swiss"/>
     	<fragment name="pics-upload"/>
-    </directory>
-    <resource-directory name="css" path="stylesheet" type="text/css"/>
-    <resource-directory name="js" path="script" type="application/javascript"/>
-    <resource-directory name="xsl" path="template" type="application/xslt+xml"/>
-    <resource-directory name="pages" path="pages" type="application/xml"/>
+    </fragment>
+    
+    <fragment name="pages">
+	    <fragment name="dvb">
+	      <use-document ref="static/dvb"/>
+	      <use-template ref="xsl/_dvb"/>
+	    </fragment>
+	    <fragment name="poll">
+	      <use-document ref="data/poll"/>
+	      <use-template ref="xsl/_poll"/>
+	    </fragment>
+	    <fragment name="smartphone">
+	      <use-document ref="data/smartphone"/>
+	      <use-template ref="xsl/_smartphone"/>
+	    </fragment>
+	    <fragment name="swiss-wertvoll">
+	      <use-document ref="data/swiss"/>
+	      <use-template ref="xsl/_swiss"/>
+	    </fragment>
+	    <fragment name="pics">
+	      <import ref="imports/default"/>
+	      <use-template ref="xsl/pics"/>
+	      <use-document ref="data/pics-upload"/>
+	      <use-document ref="static/pics"/>
+	    </fragment>
+	    <fragment name="pics2">
+	      <import ref="imports/default"/>
+	      <use-template ref="xsl/pics"/>
+	      <use-document ref="static/pics"/>
+	    </fragment>
+	    <fragment name="fonts">
+	      <use-template ref="xsl/fonts"/>
+	      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
+	      <param name="standalone" scope="global"/>
+	    </fragment>
+	    <fragment name="fonts-test">
+	      <use-template ref="xsl/fonts-test"/>
+	      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
+	    </fragment>
+	    <fragment name="GameOfLife">
+	      <use-template ref="xsl/_GameOfLife"/>
+	      <link-script ref="js/GameOfLife"/>
+	      <link-stylesheet ref="css/GameOfLife"/>
+	    </fragment>
+	    <fragment name="misc">
+	      <use-document ref="static/misc"/>
+	    </fragment>
+	    <fragment name="8bit">
+	      <use-template ref="xsl/_8bit"/>
+	      <use-document ref="static/8bit"/>
+	      <import ref="//slothsoft@core/imports/HTML5"/>
+	      <param name="standalone" scope="global"/>
+	    </fragment>
+	    <fragment name="vc2">
+	      <use-template ref="xsl/_vc2"/>
+	      <use-document ref="static/vc2a"/>
+	      <use-document ref="static/vc2b"/>
+	      <use-document ref="static/vc2c"/>
+	      <import ref="//slothsoft@core/imports/HTML5"/>
+	      <param name="standalone" scope="global"/>
+	    </fragment>
+	 </fragment>   
+    
+    
+    <fragment name="imports">
+	    <fragment name="default">
+	      <link-stylesheet ref="//slothsoft@slothsoft/css/default"/>
+	      <link-stylesheet ref="//slothsoft@slothsoft/css/fonts"/>
+	    </fragment>
+    </fragment>
+    
+    
+    
 	
 	<directory name="overwatch">
 		<resource name="config" path="config.xml" type="application/xml"/>
@@ -32,87 +135,4 @@
 			</directory>
 		</directory>
 	</directory>
-	
-    <directory name="static">
-      <resource name="swiss-wertvoll" path="swiss-wertvoll.xml" type="application/xml"/>
-      <resource-directory name="pics" path="pics" type="image/*"/>
-      <resource-directory name="txt" path="txt" type="text/plain"/>
-      <resource-directory name="misc" path="misc" type="*/*"/>
-      <resource name="unicode" path="unicode.xml" type="application/xml"/>
-      <resource name="dvb" path="dvb.xml" type="application/xml"/>
-      <resource name="8bit" path="8bit.xml" type="application/xml"/>
-      <resource name="vc2a" path="vc2a.csv" type="text/csv">
-        <options del="&#9;" sep="" output="thead"/>
-      </resource>
-      <resource name="vc2b" path="vc2b.csv" type="text/csv">
-        <options del="&#9;" sep="" output="thead"/>
-      </resource>
-      <resource name="vc2c" path="vc2c.csv" type="text/csv">
-        <options del="&#9;" sep="" output="thead"/>
-      </resource>
-      <resource name="GameOfLife" path="GameOfLife.svg" type="image/svg+xml"/>
-      <resource name="GameOfLife.Filter" path="GameOfLife.Filter.svg" type="image/svg+xml"/>
-    </directory>
-    <fragment name="dvb">
-      <use-document ref="static/dvb"/>
-      <use-template ref="xsl/_dvb"/>
-    </fragment>
-    <fragment name="poll">
-      <use-document ref="data/poll"/>
-      <use-template ref="xsl/_poll"/>
-    </fragment>
-    <fragment name="smartphone">
-      <use-document ref="data/smartphone"/>
-      <use-template ref="xsl/_smartphone"/>
-    </fragment>
-    <fragment name="swiss-wertvoll">
-      <use-document ref="data/swiss"/>
-      <use-template ref="xsl/_swiss"/>
-    </fragment>
-    <fragment name="pics">
-      <import ref="default"/>
-      <use-template ref="xsl/pics"/>
-      <use-document ref="data/pics-upload"/>
-      <use-document ref="static/pics"/>
-    </fragment>
-    <fragment name="pics2">
-      <import ref="default"/>
-      <use-template ref="xsl/pics"/>
-      <use-document ref="static/pics"/>
-    </fragment>
-    <fragment name="fonts">
-      <use-template ref="xsl/fonts"/>
-      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
-      <param name="standalone" scope="global"/>
-    </fragment>
-    <fragment name="fonts-test">
-      <use-template ref="xsl/fonts-test"/>
-      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
-    </fragment>
-    <fragment name="GameOfLife">
-      <use-template ref="xsl/_GameOfLife"/>
-      <link-script ref="js/GameOfLife"/>
-      <link-stylesheet ref="css/GameOfLife"/>
-    </fragment>
-    <fragment name="misc">
-      <use-document ref="static/misc"/>
-    </fragment>
-    <fragment name="default">
-      <link-stylesheet ref="//slothsoft@slothsoft/css/default"/>
-      <link-stylesheet ref="//slothsoft@slothsoft/css/fonts"/>
-    </fragment>
-    <fragment name="8bit">
-      <use-template ref="xsl/_8bit"/>
-      <use-document ref="static/8bit"/>
-      <import ref="//slothsoft@core/HTML5"/>
-      <param name="standalone" scope="global"/>
-    </fragment>
-    <fragment name="vc2">
-      <use-template ref="xsl/_vc2"/>
-      <use-document ref="static/vc2a"/>
-      <use-document ref="static/vc2b"/>
-      <use-document ref="static/vc2c"/>
-      <import ref="//slothsoft@core/HTML5"/>
-      <param name="standalone" scope="global"/>
-    </fragment>
   </assets>
