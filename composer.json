@@ -33,7 +33,7 @@
     },
     "autoload": {
         "files": [
-            "src\/registerModule.php"
+            "C:\\Webserver\\workspace\\slothsoft-dev\\src\\registerModule.php"
         ],
         "psr-0": {
             "Slothsoft\\Dev\\": "src\/"
