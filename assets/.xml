@@ -60,13 +60,13 @@
 	      <use-template ref="xsl/_swiss"/>
 	    </fragment>
 	    <fragment name="pics">
-	      <import ref="imports/default"/>
+	      <import ref="api/default"/>
 	      <use-template ref="xsl/pics"/>
 	      <use-document ref="data/pics-upload"/>
 	      <use-document ref="static/pics"/>
 	    </fragment>
 	    <fragment name="pics2">
-	      <import ref="imports/default"/>
+	      <import ref="api/default"/>
 	      <use-template ref="xsl/pics"/>
 	      <use-document ref="static/pics"/>
 	    </fragment>
@@ -90,7 +90,7 @@
 	    <fragment name="8bit">
 	      <use-template ref="xsl/_8bit"/>
 	      <use-document ref="static/8bit"/>
-	      <import ref="//slothsoft@core/imports/HTML5"/>
+	      <import ref="//slothsoft@core/api/HTML5"/>
 	      <param name="standalone" scope="global"/>
 	    </fragment>
 	    <fragment name="vc2">
@@ -98,13 +98,13 @@
 	      <use-document ref="static/vc2a"/>
 	      <use-document ref="static/vc2b"/>
 	      <use-document ref="static/vc2c"/>
-	      <import ref="//slothsoft@core/imports/HTML5"/>
+	      <import ref="//slothsoft@core/api/HTML5"/>
 	      <param name="standalone" scope="global"/>
 	    </fragment>
 	 </fragment>   
     
     
-    <fragment name="imports">
+    <fragment name="api">
 	    <fragment name="default">
 	      <link-stylesheet ref="//slothsoft@slothsoft/css/default"/>
 	      <link-stylesheet ref="//slothsoft@slothsoft/css/fonts"/>
