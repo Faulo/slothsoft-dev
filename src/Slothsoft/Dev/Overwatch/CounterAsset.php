@@ -53,7 +53,7 @@ class CounterAsset extends ContainerAsset
         $document = $this->getElement()->toDocument();
         $parentNode = $document->documentElement;
         foreach ($this->getAssetChildren() as $child) {
-            $parentNode->appendChild($child->lookupResultByArguments($url->getArguments())
+            $parentNode->appendChild($child->createResult($url->getArguments())
                 ->toElement($document));
         }
         return new DOMDocumentResult($url, $document);
