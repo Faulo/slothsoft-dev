@@ -36,14 +36,10 @@ class CounterAsset extends ContainerAsset
                 $source[$attr->name] = $attr->value;
             }
             
-            $ret[] = $this->buildFragment(
-                $source['name'],
-                [
-                    'config' => '/overwatch/config',
-                    'source' => "/overwatch/source/$source[name]",
-                ],
-                "/overwatch/$source[type]-adapter/$source[adapter]"
-            );
+            $ret[] = $this->buildFragment($source['name'], [
+                'config' => '/overwatch/config',
+                'source' => "/overwatch/source/$source[name]"
+            ], "/overwatch/$source[type]-adapter/$source[adapter]");
         }
         return $ret;
     }
