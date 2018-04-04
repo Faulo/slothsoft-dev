@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sfm="http://schema.slothsoft.net/farah/module"
-	xmlns:sfs="http://schema.slothsoft.net/farah/sitemap" xmlns:lio="http://slothsoft.net"
-	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
-	xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl func str">
+<xsl:stylesheet version="1.0" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:sfm="http://schema.slothsoft.net/farah/module"
+	xmlns:sfs="http://schema.slothsoft.net/farah/sitemap"
+	xmlns:lio="http://slothsoft.net"
+	xmlns:exsl="http://exslt.org/common"
+	xmlns:func="http://exslt.org/functions"
+	xmlns:str="http://exslt.org/strings"
+	extension-element-prefixes="lio exsl func str">
 
 	<xsl:import href="farah://slothsoft@dev/overwatch/counter/counter-list" />
 

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sfm="http://schema.slothsoft.net/farah/module"
-	xmlns:sfs="http://schema.slothsoft.net/farah/sitemap" xmlns:lio="http://slothsoft.net"
-	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
-	xmlns:str="http://exslt.org/strings" extension-element-prefixes="exsl func str">
+<xsl:stylesheet version="1.0" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:sfm="http://schema.slothsoft.net/farah/module"
+	xmlns:sfs="http://schema.slothsoft.net/farah/sitemap"
+	xmlns:lio="http://slothsoft.net"
+	xmlns:exsl="http://exslt.org/common"
+	xmlns:func="http://exslt.org/functions"
+	xmlns:str="http://exslt.org/strings"
+	extension-element-prefixes="exsl func str">
 
 	<xsl:variable name="config" select="/*/*[@name='config']/config" />
 	<xsl:variable name="source" select="/*/*[@name='source']/*" />
@@ -30,28 +35,28 @@
 	</func:function>
 	
 	<xsl:template match="/*[@name='counter']">
-		<counter-list>
+		<lio:counter-list>
 			<xsl:for-each select="*">
-				<counter name="{@name}">
-					<xsl:copy-of select="*/@*"/>
-					<xsl:copy-of select="*/*"/>
-				</counter>
+				<lio:source name="{@name}">
+					<xsl:copy-of select="lio:counter/@*"/>
+					<xsl:copy-of select="lio:counter/*"/>
+				</lio:source>
 			</xsl:for-each>
-		</counter-list>
+		</lio:counter-list>
 	</xsl:template>
 
 	<xsl:template match="/*[@name!='counter']">
-		<counter>
+		<lio:counter>
 			<xsl:for-each select="$config/hero-list/hero">
 				<xsl:variable name="heroName" select="@name" />
-				<hero name="{$heroName}">
+				<lio:hero name="{$heroName}">
 					<xsl:for-each select="$config/hero-list/hero">
 						<xsl:variable name="otherName" select="@name" />
-						<other-hero name="{$otherName}"
+						<lio:other-hero name="{$otherName}"
 							counter-value="{lio:calculate-counter($heroName, $otherName)}" />
 					</xsl:for-each>
-				</hero>
+				</lio:hero>
 			</xsl:for-each>
-		</counter>
+		</lio:counter>
 	</xsl:template>
 </xsl:stylesheet>
