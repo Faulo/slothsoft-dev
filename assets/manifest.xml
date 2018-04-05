@@ -4,13 +4,8 @@
     <resource-directory name="js" type="application/javascript"/>
     <resource-directory name="xsl" type="application/xslt+xml"/>
     
-    <resource-directory name="sitemap" type="application/xml"/>
-    
-    <directory name="schema">
-     <directory name="null">
-       <resource-directory name="20171027" path="20171027" type="application/x-xsd+xml"/>
-       <resource-directory name="latest" path="20171027" type="application/x-xsd+xml"/>
-     </directory>
+    <directory name="sitemap">
+    	<resource use="template" name="template" type="application/xslt+xml"/>
     </directory>
 	
     <directory name="static">
