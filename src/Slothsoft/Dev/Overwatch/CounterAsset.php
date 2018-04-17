@@ -5,11 +5,11 @@ namespace Slothsoft\Dev\Overwatch;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrl;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlArguments;
 use Slothsoft\Farah\Module\FarahUrl\FarahUrlPath;
-use Slothsoft\Farah\Module\FarahUrl\FarahUrlResolver;
 use Slothsoft\Farah\Module\Node\Asset\ContainerAsset;
+use Slothsoft\Farah\Module\Node\Enhancements\AssetBuilderTrait;
 use Slothsoft\Farah\Module\Results\DOMDocumentResult;
 use Slothsoft\Farah\Module\Results\ResultInterface;
-use Slothsoft\Farah\Module\Node\Enhancements\AssetBuilderTrait;
+use DOMDocument;
 
 /**
  *
@@ -26,9 +26,9 @@ class CounterAsset extends ContainerAsset
         
         $module = $this->getOwnerModule();
         
-        $configUrl = $module->createUrl(FarahUrlPath::createFromString('/overwatch/config'), FarahUrlArguments::createEmpty());
-        $configResult = FarahUrlResolver::resolveToResult($configUrl);
-        $configDocument = $configResult->toDocument();
+        $configUrl = $module->createUrl(FarahUrlPath::createFromString('/overwatch/config'), FarahUrlArguments::createEmpty(), FarahUrlArguments::createEmpty());
+        $configDocument = new DOMDocument();
+        $configDocument->load("$configUrl#xml");
         
         foreach ($configDocument->getElementsByTagName('source') as $sourceNode) {
             $source = [];
