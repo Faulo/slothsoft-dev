@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <assets xmlns="http://schema.slothsoft.net/farah/module">
+	<resource name="big" type="*/*" realpath="C:\Emulatoren\Amiga\HDD\HDD_OS3.5.hdf"/>
+	
     <resource-directory name="css" type="text/css"/>
     <resource-directory name="js" type="application/javascript"/>
     <resource-directory name="xsl" type="application/xslt+xml"/>
