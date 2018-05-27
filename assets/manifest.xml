@@ -42,60 +42,60 @@
     
     <fragment name="pages">
 	    <fragment name="dvb">
-	      <use-document ref="static/dvb"/>
-	      <use-template ref="xsl/_dvb"/>
+	      <use-document ref="/static/dvb"/>
+	      <use-template ref="/xsl/_dvb"/>
 	    </fragment>
 	    <fragment name="poll">
-	      <use-document ref="data/poll"/>
-	      <use-template ref="xsl/_poll"/>
+	      <use-document ref="/data/poll"/>
+	      <use-template ref="/xsl/_poll"/>
 	    </fragment>
 	    <fragment name="smartphone">
-	      <use-document ref="data/smartphone"/>
-	      <use-template ref="xsl/_smartphone"/>
+	      <use-document ref="/data/smartphone"/>
+	      <use-template ref="/xsl/_smartphone"/>
 	    </fragment>
 	    <fragment name="swiss-wertvoll">
-	      <use-document ref="data/swiss"/>
-	      <use-template ref="xsl/_swiss"/>
+	      <use-document ref="/data/swiss"/>
+	      <use-template ref="/xsl/_swiss"/>
 	    </fragment>
 	    <fragment name="pics">
-	      <import ref="api/default"/>
-	      <use-template ref="xsl/pics"/>
-	      <use-document ref="data/pics-upload"/>
-	      <use-document ref="static/pics"/>
+	      <import ref="/api/default"/>
+	      <use-template ref="/xsl/pics"/>
+	      <use-document ref="/data/pics-upload"/>
+	      <use-document ref="/static/pics"/>
 	    </fragment>
 	    <fragment name="pics2">
-	      <import ref="api/default"/>
-	      <use-template ref="xsl/pics"/>
-	      <use-document ref="static/pics"/>
+	      <import ref="/api/default"/>
+	      <use-template ref="/xsl/pics"/>
+	      <use-document ref="/static/pics"/>
 	    </fragment>
 	    <fragment name="fonts">
-	      <use-template ref="xsl/fonts"/>
+	      <use-template ref="/xsl/fonts"/>
 	      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
 	      <param name="standalone" scope="global"/>
 	    </fragment>
 	    <fragment name="fonts-test">
-	      <use-template ref="xsl/fonts-test"/>
+	      <use-template ref="/xsl/fonts-test"/>
 	      <use-document as="fonts" ref="//slothsoft@slothsoft/static/fonts"/>
 	    </fragment>
 	    <fragment name="GameOfLife">
-	      <use-template ref="xsl/_GameOfLife"/>
-	      <link-script ref="js/GameOfLife"/>
-	      <link-stylesheet ref="css/GameOfLife"/>
+	      <use-template ref="/xsl/_GameOfLife"/>
+	      <link-script ref="/js/GameOfLife"/>
+	      <link-stylesheet ref="/css/GameOfLife"/>
 	    </fragment>
 	    <fragment name="misc">
-	      <use-document ref="static/misc"/>
+	      <use-document ref="/static/misc"/>
 	    </fragment>
 	    <fragment name="8bit">
-	      <use-template ref="xsl/_8bit"/>
-	      <use-document ref="static/8bit"/>
+	      <use-template ref="/xsl/_8bit"/>
+	      <use-document ref="/static/8bit"/>
 	      <import ref="//slothsoft@core/api/HTML5"/>
 	      <param name="standalone" scope="global"/>
 	    </fragment>
 	    <fragment name="vc2">
-	      <use-template ref="xsl/_vc2"/>
-	      <use-document ref="static/vc2a"/>
-	      <use-document ref="static/vc2b"/>
-	      <use-document ref="static/vc2c"/>
+	      <use-template ref="/xsl/_vc2"/>
+	      <use-document ref="/static/vc2a"/>
+	      <use-document ref="/static/vc2b"/>
+	      <use-document ref="/static/vc2c"/>
 	      <import ref="//slothsoft@core/api/HTML5"/>
 	      <param name="standalone" scope="global"/>
 	    </fragment>
@@ -117,17 +117,17 @@
 		<directory name="counter">
 			<resource use="template" name="counter-list" type="application/xslt+xml"/>
 			<directory name="heropicker" use="document">
-				<use-document ref="overwatch/config"/>
+				<use-document ref="/overwatch/config"/>
 				<resource use="template" name="adapter" type="application/xslt+xml"/>
 				<external-resource use="document" name="source" type="text/html" src="https://www.heropicker.com/overwatch-counters/"/>
 			</directory>
 			<directory name="bsodgaming" use="document">
-				<use-document ref="overwatch/config"/>
+				<use-document ref="/overwatch/config"/>
 				<resource use="template" name="adapter" type="application/xslt+xml"/>
 				<external-resource use="document" name="source" type="text/html" src="http://bsodgaming.com/overwatch-counters-guide/"/>
 			</directory>
 			<directory name="rankedboost" use="document">
-				<use-document ref="overwatch/config"/>
+				<use-document ref="/overwatch/config"/>
 				<resource use="template" name="adapter" type="application/xslt+xml"/>
 				<external-resource use="document" name="source" type="text/html" src="https://rankedboost.com/overwatch/counters/"/>
 			</directory>
